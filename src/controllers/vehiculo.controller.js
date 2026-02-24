@@ -70,11 +70,11 @@ export const addMatriculaController = async (req, res) => {
       color,
       matricula,
     };
-    const result = await addMatriculaDatabase(payload);
+    await addMatriculaDatabase(payload);
     return res.status(200).json({
       success: true,
       env: process.env.NODE_ENV,
-      data: `Matrícula regisrada con éxito.`,
+      data: `Matrícula registrada con éxito.`,
     });
   } catch (error) {
     return res.status(500).json({

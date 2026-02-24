@@ -66,18 +66,14 @@ export const getColoresDatabase = async () => {
 export const addMatriculaDatabase = async (payload) => {
   try {
     const { connection } = getConnection(1);
-    const result = await connection.execute(
-      `BEGIN sp_alta_matricula(:payload); END;`,
-      {
-        payload: {
-          dir: oracledb.BIND_IN,
-          type: oracledb.STRING,
-          val: JSON.stringify(payload),
-        },
+    await connection.execute(`BEGIN sp_alta_matricula(:payload); END;`, {
+      payload: {
+        dir: oracledb.BIND_IN,
+        type: oracledb.STRING,
+        val: JSON.stringify(payload),
       },
-    );
-    console.log("Resultado de addMatriculaDatabase:", result.outBinds.data);
-    return result.outBinds.data;
+    });
+    return;
   } catch (error) {
     console.error(`Error en addMatriculaDatabase: ${error}`);
     throw new Error(error.message.replace(/\n/g, " ").replace(/['"]+/g, ""));
