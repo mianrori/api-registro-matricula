@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    container_name: api-registro-matricula
+    restart: unless-stopped
+    ports:
+      - "5304:5304"                 
+    environment:
+      - NODE_ENV=production        
+    volumes:
+      - ./logs:/app/logs
+    
