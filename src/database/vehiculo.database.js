@@ -73,7 +73,7 @@ export const addMatriculaDatabase = async (payload) => {
         val: JSON.stringify(payload),
       },
     });
-    return;
+    return true;
   } catch (error) {
     console.error(`Error en addMatriculaDatabase: ${error}`);
     throw new Error(error.message.replace(/\n/g, " ").replace(/['"]+/g, ""));
